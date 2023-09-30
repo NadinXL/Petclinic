@@ -14,8 +14,8 @@ namespace Petclinic.Models
         public int Id {get;set;}
         public string? Name {get;set;}
         public string? Descripcion {get;set;}
-        public string? Precio {get;set;}  
-        public string? PorcentajeDescuento {get;set;}
+        public Decimal Precio {get;set;}  
+        public Decimal PorcentajeDescuento {get;set;}
         public string? ImageName {get;set;}  
         public string? Status {get;set;}
     }
