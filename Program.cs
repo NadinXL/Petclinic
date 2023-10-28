@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Petclinic.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
+using Petclinic.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +13,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+//Agregando roles
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+//Registro mi logica customizada y reuzable
+builder.Services.AddScoped<ProductoService, ProductoService>();
 
 var app = builder.Build();
 
